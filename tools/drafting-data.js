@@ -263,6 +263,65 @@ module.exports = [
     ]
   },
   {
+    id: "waqf", name: "Waqf & Religious Institutions", icon: "fa-mosque",
+    items: [
+      ["Waqfnama (Waqf Deed)", "Dedicating property as waqf"],
+      ["Waqf-alal-Aulad (Family Waqf) Deed"],
+      ["Waqf Property Registration Application"],
+      ["Mutawalli Appointment Application / Resolution"],
+      ["Mutawalli Accounts & Budget Statement"],
+      ["Objection to Waqf Survey / Record Entry"],
+      ["Waqf Tribunal Suit / Application"],
+      ["Encroachment Complaint to Waqf Board"],
+      ["Representation to Waqf Board"],
+      ["NOC Application to Waqf Board"],
+      ["Lease Agreement for Waqf Property"],
+      ["Masjid / Madrasa Committee Bye-laws"],
+      ["Qabristan (Graveyard) Committee Resolution"],
+      ["Temple / Gurdwara / Church Trust Deed"],
+      ["Religious Committee Bye-laws & Election Rules"],
+      ["Donation (Daan) / Endowment Deed"]
+    ]
+  },
+  {
+    id: "immigration", name: "Immigration, Visa & Travel", icon: "fa-plane-departure",
+    items: [
+      ["Complaint Against Travel / Immigration Agent"],
+      ["Affidavit of Support / Sponsorship Affidavit"],
+      ["Visa Relationship & Financial Affidavits"],
+      ["Agreement with Immigration Consultant (Review)"],
+      ["Passport Re-issue / Impound Representation"],
+      ["Apostille Cover Letter & Declarations"]
+    ]
+  },
+  {
+    id: "utility", name: "Electricity, Land & Rural", icon: "fa-tractor",
+    items: [
+      ["Electricity Bill Complaint to PSPCL"],
+      ["CGRF Complaint / Ombudsman Appeal"],
+      ["Reply to Electricity Theft Notice"],
+      ["Connection Name Transfer Application"],
+      ["Application for Jamabandi / Girdawari Correction"],
+      ["Application for Demarcation (Nishandehi)"],
+      ["Warabandi / Canal Water Complaint"],
+      ["Objection in Consolidation (Chakbandi)"],
+      ["Panchayat Land Lease Objection"]
+    ]
+  },
+  {
+    id: "special", name: "Licences, Forces & Special Matters", icon: "fa-id-card",
+    items: [
+      ["Arms Licence Application / Renewal / Appeal"],
+      ["Armed Forces Disability Pension Representation"],
+      ["Ex-Servicemen Benefit Applications"],
+      ["HUF Deed (Hindu Undivided Family)"],
+      ["HUF Partition Deed"],
+      ["Cooperative Society Dispute Application"],
+      ["RTE Admission Application / Complaint"],
+      ["Disability Certificate & Benefits Representation"]
+    ]
+  },
+  {
     id: "vehicle", name: "Vehicles & Everyday Documents", icon: "fa-car",
     items: [
       ["Vehicle Sale Agreement (Second-hand Car / Bike)"],

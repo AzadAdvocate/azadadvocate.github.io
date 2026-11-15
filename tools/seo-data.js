@@ -201,6 +201,57 @@ module.exports.categories = {
       ["Bachche dekhbhaal nahi kar rahe, kya kar sakte hain?", "Maintenance and Welfare of Parents and Senior Citizens Act, 2007 ke tahat Maintenance Tribunal mein kharche ki arzi lagai ja sakti hai."]
     ]
   },
+  waqf: {
+    title: "Waqf Board Lawyer in Punjab | Waqf Property, Waqf Tribunal, Mutawalli Matters",
+    h1: "Waqf Law & Waqf Board Matters",
+    intro: "Legal help with waqf properties and the Punjab Waqf Board: registration of waqf property, waqfnama, Waqf Tribunal cases, encroachment, mutawalli disputes, leases of waqf property, survey objections and advice on the Waqf (Amendment) Act, 2025.",
+    searches: ["waqf board lawyer Punjab", "wakf board case", "waqf property registration kaise karein", "waqf tribunal case", "masjid ki zameen par kabza", "qabristan zameen vivaad", "mutawalli kaise bane", "waqf amendment act 2025", "वक्फ बोर्ड वकील", "وقف بورڈ وکیل"],
+    faqs: [
+      ["Waqf property kya hoti hai?", "Jo property Islam ke tahat dharmik, pavitra ya charitable kaam ke liye hamesha ke liye dedicate ki jaati hai, jaise masjid, madrasa, qabristan, dargah ya unki aamdani wali property, use waqf property kehte hain."],
+      ["Waqf property se jude vivaad kahan jaate hain?", "Waqf property ke title, possession aur management ke zyadatar vivaad Waqf Tribunal mein jaate hain. Waqf Board ke orders ko High Court mein bhi challenge kiya ja sakta hai."],
+      ["Waqf (Amendment) Act, 2025 se kya badla hai?", "2025 ke amendment ne waqf properties ki registration, records aur Waqf Boards ke kaam karne ke tareeke mein kai badlaav kiye hain. Kuch provisions par court mein sunwai bhi chal rahi hai, isliye apni property ke baare mein taaza salah lein."],
+      ["Waqf property par kabza ho gaya hai, kya karein?", "Waqf Board ko likhit shikayat dein aur Waqf Tribunal mein possession aur encroachment hatane ki karwai ki ja sakti hai. Saare records aur documents sambhal kar rakhein."]
+    ]
+  },
+  religious: {
+    title: "Religious & Charitable Trust Lawyer in Jalandhar | Temple, Gurdwara, Church Trusts",
+    h1: "Religious & Charitable Institutions",
+    intro: "Trust deeds, registration, committee disputes and property protection for temples, gurdwaras, churches, dharamshalas, NGOs and other charitable institutions.",
+    searches: ["trust registration Jalandhar", "mandir committee vivaad", "gurdwara committee case", "charitable trust kaise banayein", "12A 80G registration", "dharmik sanstha ki zameen"],
+    faqs: [
+      ["Charitable trust kaise banta hai?", "Trust deed banti hai jisme trust ka uddeshya, trustees aur niyam likhe hote hain, aur use Sub-Registrar ke yahan register karwaya jaata hai. Tax chhoot ke liye income tax mein 12A/80G registration alag se hoti hai."]
+    ]
+  },
+  immigration: {
+    title: "Immigration & Travel Agent Fraud Lawyer in Jalandhar | Visa, Passport",
+    h1: "Immigration & Travel Agent Fraud",
+    intro: "Help when an immigration or travel agent takes money and does not deliver: police complaints, FIRs and recovery, action under the Punjab Travel Professionals (Regulation) Act, visa affidavits, passport problems and support for returned migrants.",
+    searches: ["agent ne paise le liye visa nahi lagaya", "travel agent fraud complaint Jalandhar", "immigration fraud case", "fake agent ke khilaaf FIR", "visa affidavit", "passport impound", "ਏਜੰਟ ਧੋਖਾਧੜੀ ਸ਼ਿਕਾਇਤ"],
+    faqs: [
+      ["Agent ne paise le liye aur visa nahi lagwaya, kya karein?", "Payment ke saboot, receipts, chats aur agreement sambhal kar rakhein. Police mein cheating ki complaint/FIR karwai ja sakti hai, aur paise wapas lene ke liye civil ya consumer karwai bhi ho sakti hai."],
+      ["Agent registered hai ya nahi, kaise pata karein?", "Punjab mein travel aur immigration consultants ka registration zaroori hai. Kisi ko paise dene se pehle district administration ki list mein uska licence check karein."]
+    ]
+  },
+  utility: {
+    title: "PSPCL Electricity Bill & Theft Case Lawyer in Jalandhar | CGRF, Ombudsman",
+    h1: "Electricity, Water & Utility Disputes",
+    intro: "Disputes with PSPCL and local bodies: wrong or excessive bills, disconnection, electricity theft notices and cases, CGRF complaints, Ombudsman appeals and connection transfer.",
+    searches: ["bijli ka bill zyada aaya", "PSPCL complaint", "bijli chori ka case", "electricity theft notice reply", "CGRF complaint Punjab", "connection naam transfer", "ਬਿਜਲੀ ਬਿੱਲ ਸ਼ਿਕਾਇਤ"],
+    faqs: [
+      ["Bijli ka bill galat aaya hai, kya karein?", "Pehle PSPCL office mein likhit shikayat dein. Samadhan na ho to Consumer Grievance Redressal Forum (CGRF) aur phir Electricity Ombudsman ke paas appeal ki ja sakti hai."],
+      ["Bijli chori ka notice aaya hai?", "Notice ka time par likhit jawab dein aur checking report ki copy maangein. Case special court mein jaata hai, isliye jaldi kaanooni salah lein."]
+    ]
+  },
+  agri: {
+    title: "Agricultural Land & Panchayat Land Lawyer in Punjab | Jamabandi, Shamlat, Canal",
+    h1: "Agricultural & Village Land",
+    intro: "Farmland disputes, panchayat (shamlat) land, jamabandi and girdawari corrections, canal water turns (warabandi), consolidation (chakbandi), theka disputes and farm loan matters across Punjab.",
+    searches: ["khet ki zameen ka vivaad", "shamlat zameen case", "jamabandi mein galti", "girdawari correction", "warabandi khal vivaad", "chakbandi appeal", "ਜ਼ਮੀਨ ਦਾ ਕੇਸ ਵਕੀਲ"],
+    faqs: [
+      ["Jamabandi ya girdawari mein galti ho to kya karein?", "Patwari/Tehsildar ke paas sudhaar ki arzi lagai jaati hai. Order se santusht na hon to revenue adhikariyon ke saamne appeal ki ja sakti hai."],
+      ["Shamlat (panchayat) zameen ka vivaad kahan jaata hai?", "Punjab Village Common Lands Act ke tahat aise vivaad aam taur par revenue authorities (jaise Collector) ke saamne jaate hain."]
+    ]
+  },
   others: {
     title: "Education, Medical Negligence & Municipal Matters | Lawyer in Jalandhar",
     h1: "Other Specialised Legal Areas",

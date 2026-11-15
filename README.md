@@ -10,11 +10,11 @@ Pure HTML/CSS/JS — no build step, no server needed. Works on any static host.
 | Page | What it contains |
 |---|---|
 | `index.html` | Home — hero, about, practice areas, online services, process, FAQ |
-| `services.html` | **A–Z directory of 170+ legal services** in 20 areas of law, with search, category filter, A–Z filter and WhatsApp enquiry per service |
+| `services.html` | **Directory of all legal services** by area of law, with search, category filter, alphabetical filter and WhatsApp enquiry per service |
 | `online-services.html` | Online consultation modes, 16 online services, NRI Legal Desk |
 | `about.html` | Profile, approach, courts & forums |
 | `resources.html` | Helplines, know-your-rights, IPC→BNS / CrPC→BNSS tables, limitation periods, document checklists, official links |
-| `drafting.html` | **Drafting Desk** — 200 documents (agreements, deeds, affidavits, notices, petitions, policies) with search and A–Z filter; every document opens WhatsApp in one click |
+| `drafting.html` | **Drafting Desk** — 200 documents (agreements, deeds, affidavits, notices, petitions, policies) with search and alphabetical filter; every document opens WhatsApp in one click |
 | `contact.html` | Consultation form (sends to WhatsApp), chamber details, Google Map |
 | `disclaimer.html` | Bar Council of India disclaimer, privacy policy, terms |
 

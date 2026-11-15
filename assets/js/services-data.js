@@ -1,5 +1,5 @@
 /*
- * A–Z Legal Services directory data.
+ * Legal Services directory data.
  * Each category: id, name, icon (Font Awesome class), summary, services: [name, description]
  * Add / remove services here — the Practice Areas page and home page update automatically.
  */
@@ -30,7 +30,10 @@ window.LEGAL_CATEGORIES = [
       ["Compounding & Compromise", "Settlement and compounding of compoundable offences, and quashing on compromise."],
       ["Victim & Complainant Representation", "Assisting victims, watching briefs and victim compensation applications."],
       ["Release of Seized Property & Vehicles", "Superdari / interim custody of vehicles and property seized by police."],
-      ["Look Out Circular (LOC) Matters", "Challenging or seeking cancellation of Look Out Circulars and travel restrictions."]
+      ["Look Out Circular (LOC) Matters", "Challenging or seeking cancellation of Look Out Circulars and travel restrictions."],
+      ["Prevention of Corruption Act (Vigilance Cases)", "Bail, defence and trial in vigilance and corruption cases."],
+      ["Gambling & Excise Prosecutions", "Defence under the Public Gambling Act, Excise Act and other local laws."],
+      ["Electricity Theft Cases", "Defence in electricity theft cases under Sec. 135 of the Electricity Act before the special court."]
     ]
   },
   {
@@ -115,7 +118,8 @@ window.LEGAL_CATEGORIES = [
       ["Legal Heir Certificate Assistance", "Documentation and applications for legal heir / surviving member certificates."],
       ["Inheritance & Family Property Disputes", "Disputes among heirs under Hindu, Muslim and other succession laws."],
       ["Family Settlement Deeds", "Amicable division of family property without litigation."],
-      ["Trust Formation", "Private and charitable trusts — deed drafting and registration."]
+      ["Trust Formation", "Private and charitable trusts — deed drafting and registration."],
+      ["HUF Formation & Partition", "Creating a Hindu Undivided Family and partition of HUF property."]
     ]
   },
   {
@@ -135,7 +139,9 @@ window.LEGAL_CATEGORIES = [
       ["MSME / Udyam Registration", "Udyam registration and MSME Samadhaan for delayed payments."],
       ["NGO, Society & Section 8 Company", "Registration of societies, trusts and Section 8 companies."],
       ["Licences & Registrations", "FSSAI, Shop & Establishment, Trade licence and Import Export Code (IEC)."],
-      ["Shareholder & Partner Disputes", "Resolution of disputes between partners, directors and shareholders."]
+      ["Shareholder & Partner Disputes", "Resolution of disputes between partners, directors and shareholders."],
+      ["FSSAI & Legal Metrology Notices", "Replies and defence in food safety, weights and measures and packaging notices."],
+      ["Cooperative Society Disputes", "Elections, membership, recovery and disputes under the Punjab Cooperative Societies Act."]
     ]
   },
   {
@@ -218,7 +224,8 @@ window.LEGAL_CATEGORIES = [
       ["Salary & Dues Recovery", "Recovery of unpaid salary and settlement dues."],
       ["PF, ESI & Gratuity Claims", "Claims and disputes under EPF, ESI and Payment of Gratuity Acts."],
       ["POSH (Workplace Harassment)", "Complaints, Internal Committee compliance and policy drafting."],
-      ["Employment Contracts & NDAs", "Appointment letters, non-compete, non-disclosure and HR policies."]
+      ["Employment Contracts & NDAs", "Appointment letters, non-compete, non-disclosure and HR policies."],
+      ["Armed Forces & Ex-Servicemen Matters", "Pension, disability pension and service matters before the Armed Forces Tribunal."]
     ]
   },
   {
@@ -292,7 +299,8 @@ window.LEGAL_CATEGORIES = [
       ["Representation in Indian Courts", "Handling cases in India on behalf of clients living abroad."],
       ["Document Attestation & Apostille", "Assistance with apostille, embassy attestation and verification."],
       ["NRI Succession & Inheritance", "Succession certificates, mutation and transfer of ancestral property."],
-      ["Punjab NRI Commission Complaints", "Complaints before the Punjab State Commission for NRIs."]
+      ["Punjab NRI Commission Complaints", "Complaints before the Punjab State Commission for NRIs."],
+      ["FEMA Advice for NRIs", "Buying, selling and repatriating money from property in India under FEMA rules."]
     ]
   },
   {
@@ -324,7 +332,10 @@ window.LEGAL_CATEGORIES = [
       ["Human Rights Commission", "Complaints before the State and National Human Rights Commissions."],
       ["Women, SC & Minority Commissions", "Complaints before statutory commissions for protection of rights."],
       ["Passport Matters", "Passport refusal, impounding, police verification and pending-case NOC issues."],
-      ["Public Grievances", "Grievances against government departments through official channels."]
+      ["Public Grievances", "Grievances against government departments through official channels."],
+      ["Arms Licence Matters", "Applications, renewal, cancellation and appeals relating to arms licences."],
+      ["Disability Rights", "Rights and benefits under the Rights of Persons with Disabilities Act, 2016."],
+      ["Transgender Rights", "Identity certificates and protection under the Transgender Persons (Protection of Rights) Act, 2019."]
     ]
   },
   {
@@ -341,6 +352,88 @@ window.LEGAL_CATEGORIES = [
     ]
   },
   {
+    id: "waqf",
+    slug: "waqf-board-lawyer-punjab",
+    name: "Waqf Law & Waqf Board Matters",
+    icon: "fa-mosque",
+    summary: "Waqf properties, Waqf Board and Waqf Tribunal matters under the Waqf Act, 1995 as amended in 2025.",
+    services: [
+      ["Waqf Property Registration", "Registration of waqf properties with the Waqf Board and on the government portal, with the required documents."],
+      ["Waqf Deed (Waqfnama)", "Drafting and registration of a waqf deed dedicating property for religious or charitable purposes."],
+      ["Waqf-alal-Aulad (Family Waqf)", "Family waqf for descendants, and disputes about family waqf property."],
+      ["Waqf Tribunal Cases", "Suits and applications before the Waqf Tribunal on title, possession and management of waqf property."],
+      ["Encroachment on Waqf Property", "Removal of encroachments and recovery of possession of waqf land and buildings."],
+      ["Mutawalli Matters", "Appointment, removal, duties and disputes of the mutawalli (manager) of a waqf."],
+      ["Waqf Accounts & Compliance", "Annual accounts, budgets, audit and returns that mutawallis must file with the Waqf Board."],
+      ["Lease & Rent of Waqf Property", "Leases, renewals, rent revision and tenant disputes over waqf shops, houses and land."],
+      ["Waqf Survey & Record Correction", "Objections to survey reports and correction of entries in waqf and revenue records."],
+      ["Mosque, Madrasa, Dargah & Qabristan Property", "Management committees, property protection and disputes of mosques, madrasas, dargahs, idgahs and graveyards."],
+      ["Challenge to Waqf Board Orders", "Appeals, representations and High Court writ petitions against orders of the Waqf Board."],
+      ["Waqf (Amendment) Act, 2025 Advice", "Advice on how the 2025 amendments affect existing waqf properties, records and mutawallis."]
+    ]
+  },
+  {
+    id: "religious",
+    slug: "religious-charitable-trust-lawyer-jalandhar",
+    name: "Religious & Charitable Institutions",
+    icon: "fa-place-of-worship",
+    summary: "Trusts, committees and properties of temples, gurdwaras, churches, dharamshalas and charitable bodies.",
+    services: [
+      ["Temple, Gurdwara & Church Trusts", "Trust deeds, registration and governance of religious trusts."],
+      ["Religious Committee Disputes", "Elections, management and control disputes of religious committees."],
+      ["Religious Property Protection", "Protecting land and buildings of religious and charitable institutions from encroachment."],
+      ["Charitable Trust & Society Registration", "Registration and compliance of charitable trusts and societies."],
+      ["Donation & Endowment Matters", "Donation deeds, endowments and disputes over offerings and funds."],
+      ["12A / 80G Registration Support", "Coordination of income tax registrations for charitable institutions."]
+    ]
+  },
+  {
+    id: "immigration",
+    slug: "immigration-travel-agent-fraud-lawyer-jalandhar",
+    name: "Immigration & Travel Agent Fraud",
+    icon: "fa-plane-departure",
+    summary: "Fraud by immigration and travel agents, visa paperwork, passports and help for returning migrants.",
+    services: [
+      ["Fraud by Immigration / Travel Agents", "Police complaints, FIRs and recovery of money from fake or unlicensed agents."],
+      ["Punjab Travel Professionals Act Complaints", "Action against unregistered travel and immigration consultants under Punjab law."],
+      ["Visa Documentation & Affidavits", "Affidavits of support, sponsorship, relationship and other visa documents."],
+      ["Passport Issues", "Passport refusal, impounding, pending-case NOC and police verification problems."],
+      ["Help for Deported / Returned Migrants", "Legal help with cases, recovery of money paid to agents and documents after return."],
+      ["Apostille & Document Attestation", "Assistance with apostille, MEA and embassy attestation of documents."]
+    ]
+  },
+  {
+    id: "utility",
+    slug: "electricity-pspcl-dispute-lawyer-jalandhar",
+    name: "Electricity, Water & Utility Disputes",
+    icon: "fa-bolt",
+    summary: "Disputes with PSPCL and other utilities: wrong bills, disconnection, theft cases and connection matters.",
+    services: [
+      ["Wrong / Excessive Electricity Bills", "Complaints and appeals against inflated or incorrect bills."],
+      ["CGRF & Electricity Ombudsman", "Complaints before the Consumer Grievance Redressal Forum and appeals to the Ombudsman."],
+      ["Disconnection & Reconnection", "Challenging illegal disconnection and getting supply restored."],
+      ["Electricity Theft Allegations", "Replies to theft notices and defence before the special court."],
+      ["Connection Transfer & Load Matters", "Name change, new connection and load disputes."],
+      ["Water, Sewerage & Municipal Bills", "Disputes over water and sewerage charges with local bodies."]
+    ]
+  },
+  {
+    id: "agri",
+    slug: "agricultural-land-panchayat-lawyer-punjab",
+    name: "Agricultural & Village Land",
+    icon: "fa-tractor",
+    summary: "Farmland, revenue records, panchayat (shamlat) land, canal water and rural property matters in Punjab.",
+    services: [
+      ["Agricultural Land Disputes", "Possession, partition and boundary disputes over farmland."],
+      ["Panchayat / Shamlat Land Matters", "Disputes over village common land under the Punjab Village Common Lands Act."],
+      ["Revenue Record (Jamabandi / Girdawari) Correction", "Correction of entries in jamabandi, girdawari and other revenue records."],
+      ["Canal Water & Khal Disputes", "Disputes over water turns (warabandi) and water channels before the canal authorities."],
+      ["Agricultural Lease (Theka) Disputes", "Disputes between landowners and tenant farmers."],
+      ["Land Consolidation (Chakbandi) Matters", "Objections and appeals in consolidation proceedings."],
+      ["Farm Loans & Kisan Credit Card Disputes", "Disputes with banks and cooperative societies over farm loans."]
+    ]
+  },
+  {
     id: "others",
     slug: "education-medical-municipal-lawyer-jalandhar",
     name: "Other Specialised Areas",
@@ -352,7 +445,8 @@ window.LEGAL_CATEGORIES = [
       ["Environmental Law (NGT)", "Pollution complaints and matters before the National Green Tribunal."],
       ["Municipal & Building Matters", "Building plan, sealing, demolition and municipal notices."],
       ["Election Disputes", "Election petitions in panchayat, municipal and other elections."],
-      ["Animal & Pet Law", "Complaints under the Prevention of Cruelty to Animals Act and pet disputes."]
+      ["Animal & Pet Law", "Complaints under the Prevention of Cruelty to Animals Act and pet disputes."],
+      ["RTE Admissions", "Admission under the Right to Education Act quota for children from weaker sections."]
     ]
   }
 ];

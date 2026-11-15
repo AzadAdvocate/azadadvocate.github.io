@@ -107,7 +107,7 @@ function renderFooter() {
         <h4>Practice Areas</h4>
         <ul>
           ${cats.map((c) => `<li><a href="${c.slug}.html">${esc(c.name)}</a></li>`).join("")}
-          <li><a href="services.html">View all A–Z services &rarr;</a></li>
+          <li><a href="services.html">View all services &rarr;</a></li>
         </ul>
       </div>
       <div>
@@ -326,7 +326,7 @@ function renderOnlineGrid() {
     </div>`).join("");
 }
 
-/* ---------- Services A–Z directory ---------- */
+/* ---------- Services directory ---------- */
 function initDirectory() {
   const host = document.getElementById("directory");
   if (!host || !window.LEGAL_CATEGORIES) return;
@@ -365,7 +365,7 @@ function initDirectory() {
   function render() {
     const list = filtered();
     countEl.textContent = `Showing ${list.length} of ${all.length} legal services`;
-    // A–Z availability for current cat/search
+    // letter availability for current cat/search
     const pool = all.filter((s) => (state.cat === "all" || s.cat.id === state.cat) &&
       (!state.q || (s.name + " " + s.desc + " " + s.cat.name).toLowerCase().includes(state.q.trim().toLowerCase())));
     azHost.querySelectorAll("button").forEach((b) => {
@@ -431,6 +431,8 @@ function initDirectory() {
     render();
   }));
 
+  const q0 = new URLSearchParams(location.search).get("q");
+  if (q0) { search.value = q0; state.q = q0; }
   // Deep-link: services.html#family
   const hash = decodeURIComponent(location.hash.replace("#", ""));
   if (hash && cats.some((c) => c.id === hash)) {
@@ -538,6 +540,8 @@ function initDraftDesk() {
     const b = e.target.closest("button"); if (!b || b.disabled) return;
     state.letter = state.letter === b.dataset.letter ? "" : b.dataset.letter; render();
   });
+  const dq = new URLSearchParams(location.search).get("q");
+  if (dq) { search.value = dq; state.q = dq; }
   const hash = location.hash.replace("#", "");
   const hashChip = hash && chips.querySelector(`[data-group="${hash}"]`);
   if (hashChip) hashChip.click();
@@ -565,6 +569,94 @@ function initDraftDesk() {
   form.querySelectorAll("input, textarea").forEach((el) => el.addEventListener("input", () => el.closest(".field").classList.remove("invalid")));
 }
 
+/* ---------- Home page site search ---------- */
+const SEARCH_SYNONYMS = {
+  talaq: ["divorce", "talaq"], talak: ["divorce"], zamanat: ["bail"], jamanat: ["bail"], zamant: ["bail"],
+  vasiyat: ["will"], wasiyat: ["will"], vasiyatnama: ["will"], kabza: ["possession", "encroachment", "kabza"], kabja: ["possession", "encroachment"],
+  kiraya: ["rent", "tenant"], kirayedar: ["tenant", "rent"], kirayanama: ["rent agreement"], zameen: ["land", "property"], jameen: ["land", "property"], zamin: ["land", "property"],
+  makan: ["house", "property"], ghar: ["house", "property"], plot: ["property", "plot"], vakil: ["lawyer", "advocate"], wakil: ["lawyer", "advocate"],
+  wakf: ["waqf"], vakf: ["waqf"], waqaf: ["waqf"], wakaf: ["waqf"], masjid: ["mosque", "masjid"], qabristan: ["qabristan", "graveyard"], kabristan: ["qabristan", "graveyard"],
+  madrasa: ["madrasa"], dargah: ["dargah"], mutawalli: ["mutawalli"], mandir: ["temple"], gurdwara: ["gurdwara"],
+  dhokha: ["fraud", "cheating"], dhokhadhadi: ["fraud", "cheating"], thagi: ["fraud", "cheating"], fraud: ["fraud", "scam"],
+  naukri: ["employment", "service", "job", "salary"], tankhwah: ["salary"], shaadi: ["marriage"], shadi: ["marriage"], vivah: ["marriage"], nikah: ["nikah", "marriage"],
+  kharcha: ["maintenance"], guzara: ["maintenance"], bachcha: ["child", "custody"], bachche: ["child", "custody"], bijli: ["electricity"], bill: ["bill"],
+  chori: ["theft"], hissa: ["share", "partition", "inheritance"], batwara: ["partition"], registry: ["sale deed", "registration", "registry"], rajistri: ["sale deed", "registration"],
+  intkal: ["mutation", "intkal"], mutation: ["mutation", "intkal"], fard: ["fard", "jamabandi"], patta: ["lease", "theka"], theka: ["theka", "lease"],
+  hulfnama: ["affidavit"], halafnama: ["affidavit"], affidavit: ["affidavit"], notice: ["notice"], karza: ["loan", "debt"], udhaar: ["loan", "recovery", "money"], paisa: ["money", "recovery"], paise: ["money", "recovery"], rupaye: ["money", "recovery"],
+  gaddi: ["vehicle", "accident"], gaadi: ["vehicle", "accident"], hadsa: ["accident"], durghatna: ["accident"], check: ["cheque"], chek: ["cheque"],
+  videsh: ["nri", "abroad", "immigration"], agent: ["agent"], visa: ["visa", "immigration"], passport: ["passport"], fauj: ["armed forces", "ex-servicemen"], fauji: ["armed forces", "ex-servicemen"],
+  khet: ["agricultural", "farm", "land"], panchayat: ["panchayat", "shamlat"], shamlat: ["shamlat", "panchayat"], nahar: ["canal"], pension: ["pension"], bujurg: ["senior citizen", "parents"]
+};
+const SEARCH_STOP = new Set(["ka", "ki", "ke", "ko", "kaise", "kese", "kya", "hai", "hain", "mein", "me", "se", "liye", "lie", "karna", "karni", "karne", "karwana", "karwani", "karvana", "chahiye", "ho", "gaya", "gayi", "aur", "the", "a", "an", "of", "for", "in", "to", "my", "mera", "meri", "mere", "near", "jalandhar", "punjab", "case", "help", "how", "what", "is", "do", "i", "need", "want", "kare", "karein", "kab", "kahan", "par", "pe",
+  "ne", "le", "de", "diya", "liya", "liye", "mil", "mili", "milti", "milta", "milegi", "milega", "raha", "rahi", "rahe", "nahi", "nhi", "nai", "wala", "wali", "wale",
+  "kar", "kr", "sakta", "sakti", "sakte", "hua", "hui", "hota", "hoti", "hoga", "lena", "dena", "bana", "banana", "banwana", "banwani", "chahta", "chahti", "vakil", "wakil", "lawyer", "advocate"]);
+
+function searchSite(query) {
+  const index = window.SEARCH_INDEX || [];
+  const tokens = query.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").split(/\s+/).filter((t) => t && !SEARCH_STOP.has(t));
+  if (!tokens.length) return null;
+  // each word matches at the start of a word, through its synonyms too
+  const reEsc = (w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  let alts = tokens.map((t) => [t, ...(SEARCH_SYNONYMS[t] || [])].map((w) => new RegExp("(^|[^\\p{L}\\p{N}])" + reEsc(w), "u")));
+  const texts = index.map((it) => ({ it, name: it.t.toLowerCase(), hay: (it.t + " " + it.d + " " + (it.c || "") + " " + (it.k || "")).toLowerCase() }));
+  // ignore words that appear nowhere on the site (filler words, typos), unless that leaves nothing
+  const useful = alts.filter((a) => texts.some((x) => a.some((r) => r.test(x.hay))));
+  if (useful.length) alts = useful;
+  const scored = [];
+  for (const x of texts) {
+    let matched = 0, score = 0;
+    for (const a of alts) {
+      if (a.some((r) => r.test(x.name))) { matched++; score += 3; }
+      else if (a.some((r) => r.test(x.hay))) { matched++; score += 1; }
+    }
+    if (matched) scored.push({ it: x.it, matched, score: score + (x.it.y === "p" ? 0.5 : 0) });
+  }
+  const full = scored.filter((x) => x.matched === alts.length);
+  const list = (full.length ? full : scored).sort((a, b) => b.score - a.score);
+  return { exact: full.length > 0, list: list.map((x) => x.it) };
+}
+
+function initGlobalSearch() {
+  const input = document.getElementById("siteSearch");
+  if (!input) return;
+  const form = document.getElementById("siteSearchForm");
+  const box = document.getElementById("siteResults");
+  const docMsg = (it) => `Hello Advocate ${SITE.name}, I want to get this document drafted: ${it.t} (${it.c}). Please tell me what details and documents are needed.`;
+
+  function render() {
+    const q = input.value.trim();
+    if (q.length < 2) { box.hidden = true; box.innerHTML = ""; return; }
+    const res = searchSite(q);
+    if (!res || !res.list.length) {
+      box.hidden = false;
+      box.innerHTML = `<div class="sr-empty"><p>No exact match for <strong>${esc(q)}</strong>, but your matter can still be handled.</p>
+        <a class="btn btn-whatsapp btn-sm" href="${waLink(`Hello Advocate ${SITE.name}, I need legal help regarding: ${q}`)}" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Ask about "${esc(q)}" on WhatsApp</a></div>`;
+      return;
+    }
+    const pagesR = res.list.filter((x) => x.y === "p").slice(0, 4);
+    const svcR = res.list.filter((x) => x.y === "s");
+    const docR = res.list.filter((x) => x.y === "d");
+    const col = (title, icon, items, total, more) => !items.length ? "" : `
+      <div class="sr-col">
+        <h3><i class="fa-solid ${icon}"></i> ${title} <span>${total}</span></h3>
+        <ul>${items.join("")}</ul>
+        ${more || ""}
+      </div>`;
+    box.hidden = false;
+    box.innerHTML = (res.exact ? "" : `<p class="sr-note">Showing the closest matches for <strong>${esc(q)}</strong>.</p>`) + `<div class="sr-grid">` +
+      col("Pages", "fa-file-lines", pagesR.map((x) => `<li><a href="${x.u}"><strong>${esc(x.t)}</strong><span>${esc(x.d)}</span></a></li>`), pagesR.length) +
+      col("Legal services", "fa-scale-balanced", svcR.slice(0, 6).map((x) => `<li><a href="${x.u}"><strong>${esc(x.t)}</strong><span>${esc(x.c)}</span></a></li>`), svcR.length,
+        svcR.length > 6 ? `<a class="sr-more" href="services.html?q=${encodeURIComponent(q)}">See all ${svcR.length} services &rarr;</a>` : "") +
+      col("Drafting · WhatsApp", "fa-file-pen", docR.slice(0, 6).map((x) => `<li><a class="sr-doc" href="${waLink(docMsg(x))}" target="_blank" rel="noopener"><span class="sr-doc-text"><strong>${esc(x.t)}</strong><span>${esc(x.c)}</span></span><i class="fa-brands fa-whatsapp"></i></a></li>`), docR.length,
+        docR.length > 6 ? `<a class="sr-more" href="drafting.html?q=${encodeURIComponent(q)}">See all ${docR.length} documents &rarr;</a>` : "") +
+      `</div><div class="sr-foot">Can't find it? <a href="${waLink(`Hello Advocate ${SITE.name}, I need legal help regarding: ${q}`)}" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Ask about "${esc(q)}" on WhatsApp</a></div>`;
+  }
+  let t;
+  input.addEventListener("input", () => { clearTimeout(t); t = setTimeout(render, 120); });
+  form.addEventListener("submit", (e) => { e.preventDefault(); render(); box.scrollIntoView({ behavior: "smooth", block: "nearest" }); });
+  form.querySelectorAll("[data-q]").forEach((b) => b.addEventListener("click", () => { input.value = b.dataset.q; render(); input.focus(); }));
+}
+
 /* ---------- Boot ---------- */
 document.addEventListener("DOMContentLoaded", () => {
   renderHeader();
@@ -574,6 +666,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initDirectory();
   initContactForm();
   initDraftDesk();
+  initGlobalSearch();
   initUI();
   initReveal();
   renderDisclaimer();
