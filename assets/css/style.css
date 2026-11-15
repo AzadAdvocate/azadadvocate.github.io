@@ -46,6 +46,7 @@ h3 { font-size: 1.25rem; }
 p { margin: 0 0 1em; }
 ul { padding-left: 1.2em; }
 button, input, select, textarea { font: inherit; }
+[hidden] { display: none !important; }
 :focus-visible { outline: 3px solid var(--gold-500); outline-offset: 2px; }
 
 .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 20px; }
@@ -430,3 +431,14 @@ tbody tr:nth-child(even) { background: var(--bg-soft); }
   .section { padding: 20px 0; }
 }
 section[id], [id="book"] { scroll-margin-top: 90px; }
+
+/* SEO landing pages */
+.svc.svc-static { cursor: default; }
+.svc.svc-static:hover { transform: none; }
+.search-tags { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.search-tags li { padding: 7px 14px; border-radius: 50px; background: #fff; border: 1px solid var(--line); font-size: .88rem; color: var(--muted); }
+.search-tags li::before { content: "\f002"; font-family: "Font Awesome 6 Free"; font-weight: 900; margin-right: 8px; color: var(--gold-500); font-size: .78rem; }
+.area-links { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.area-links a { display: inline-block; padding: 9px 16px; border-radius: 50px; border: 1px solid var(--line); background: #fff; color: var(--navy-800); font-size: .9rem; font-weight: 500; transition: all .2s; }
+.area-links a:hover { border-color: var(--gold-500); background: var(--gold-100); color: var(--navy-800); }
+.page-hero .btn-outline { border-color: rgba(255,255,255,.6); }

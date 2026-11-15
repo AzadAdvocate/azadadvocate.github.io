@@ -6,6 +6,7 @@
 window.LEGAL_CATEGORIES = [
   {
     id: "criminal",
+    slug: "criminal-lawyer-jalandhar",
     name: "Criminal Law & Defence",
     icon: "fa-gavel",
     summary: "Bail, FIRs, trials, appeals and quashing under the new criminal laws (BNS, BNSS, BSA) and the earlier IPC/CrPC.",
@@ -34,6 +35,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "civil",
+    slug: "civil-lawyer-jalandhar",
     name: "Civil Litigation",
     icon: "fa-scale-balanced",
     summary: "Suits, injunctions, recovery, execution and appeals before civil courts.",
@@ -54,6 +56,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "family",
+    slug: "divorce-family-lawyer-jalandhar",
     name: "Family & Matrimonial Law",
     icon: "fa-people-roof",
     summary: "Divorce, maintenance, custody, marriage registration and protection — handled with sensitivity and privacy.",
@@ -78,6 +81,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "property",
+    slug: "property-lawyer-jalandhar",
     name: "Property & Real Estate",
     icon: "fa-house",
     summary: "Title checks, documentation, registration, mutation, revenue matters and property disputes.",
@@ -100,6 +104,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "succession",
+    slug: "will-succession-lawyer-jalandhar",
     name: "Wills, Succession & Inheritance",
     icon: "fa-file-signature",
     summary: "Plan your estate and secure your family's inheritance.",
@@ -115,6 +120,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "corporate",
+    slug: "company-business-lawyer-jalandhar",
     name: "Corporate & Business Law",
     icon: "fa-briefcase",
     summary: "From setting up a business to contracts, compliance and commercial disputes.",
@@ -134,6 +140,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "banking",
+    slug: "banking-recovery-lawyer-jalandhar",
     name: "Banking, Finance & Recovery",
     icon: "fa-building-columns",
     summary: "Cheque bounce, loan disputes, DRT, SARFAESI and insolvency.",
@@ -150,6 +157,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "consumer",
+    slug: "consumer-court-lawyer-jalandhar",
     name: "Consumer Protection",
     icon: "fa-cart-shopping",
     summary: "Complaints before District, State and National Consumer Commissions.",
@@ -166,6 +174,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "cyber",
+    slug: "cyber-crime-lawyer-jalandhar",
     name: "Cyber Law & IT",
     icon: "fa-laptop-code",
     summary: "Online fraud, social media crime, data protection and IT compliance.",
@@ -181,6 +190,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "constitutional",
+    slug: "writ-petition-high-court-lawyer",
     name: "Constitutional & Writ Matters",
     icon: "fa-landmark",
     summary: "Writ petitions and enforcement of fundamental rights.",
@@ -195,6 +205,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "service",
+    slug: "service-matter-labour-lawyer-jalandhar",
     name: "Service & Employment Law",
     icon: "fa-user-tie",
     summary: "For government employees, private employees and employers.",
@@ -212,6 +223,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "accident",
+    slug: "accident-claim-mact-lawyer-jalandhar",
     name: "Motor Accident & Insurance",
     icon: "fa-car-burst",
     summary: "Compensation for accident victims and their families.",
@@ -225,6 +237,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "tax",
+    slug: "gst-income-tax-lawyer-jalandhar",
     name: "Taxation",
     icon: "fa-receipt",
     summary: "Notices, assessments and appeals under Income Tax and GST.",
@@ -239,6 +252,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "ip",
+    slug: "trademark-registration-lawyer-jalandhar",
     name: "Intellectual Property",
     icon: "fa-copyright",
     summary: "Protect your brand, content and inventions.",
@@ -253,6 +267,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "adr",
+    slug: "arbitration-mediation-lawyer-jalandhar",
     name: "Arbitration, Mediation & ADR",
     icon: "fa-handshake",
     summary: "Faster, cost-effective dispute resolution outside court.",
@@ -266,6 +281,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "nri",
+    slug: "nri-legal-services-punjab",
     name: "NRI Legal Services",
     icon: "fa-earth-asia",
     summary: "Legal support for Non-Resident Indians — wherever you are in the world.",
@@ -281,6 +297,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "documents",
+    slug: "legal-notice-drafting-jalandhar",
     name: "Legal Drafting & Documentation",
     icon: "fa-file-contract",
     summary: "Professionally drafted documents that protect your interests.",
@@ -297,6 +314,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "govt",
+    slug: "rti-police-complaint-lawyer-jalandhar",
     name: "RTI, Govt & Human Rights",
     icon: "fa-scroll",
     summary: "Holding public authorities accountable.",
@@ -311,6 +329,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "senior",
+    slug: "senior-citizen-lawyer-jalandhar",
     name: "Senior Citizens & Welfare",
     icon: "fa-person-cane",
     summary: "Protecting the dignity, property and maintenance of elders.",
@@ -323,6 +342,7 @@ window.LEGAL_CATEGORIES = [
   },
   {
     id: "others",
+    slug: "education-medical-municipal-lawyer-jalandhar",
     name: "Other Specialised Areas",
     icon: "fa-layer-group",
     summary: "Education, medical, environmental, municipal and election law.",

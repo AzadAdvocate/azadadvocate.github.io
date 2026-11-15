@@ -36,3 +36,26 @@ A BCI-compliant disclaimer popup appears on the first visit.
 4. Optional: add your own domain under **Settings → Pages → Custom domain**.
 
 Works the same on Netlify, Vercel, Cloudflare Pages or any shared hosting (upload all files).
+
+## Google search (SEO)
+
+The site has a separate, search-friendly page for every practice area (`criminal-lawyer-jalandhar.html`,
+`divorce-family-lawyer-jalandhar.html`, `court-marriage-jalandhar.html`, `bail-lawyer-jalandhar.html` …) with
+everyday search phrases, Hinglish FAQs, structured data (schema.org), plus `sitemap.xml` and `robots.txt`.
+
+These pages are **generated**. After changing services, search phrases or settings, run:
+
+```
+node tools/build-seo-pages.js
+```
+
+- Search phrases and FAQs: `tools/seo-data.js`
+- Website address (`siteUrl`) and Google Business Profile link (`googleBusiness`): `SITE` in `assets/js/main.js`
+
+### Connecting Google Business Profile & Google Search
+
+1. In Google Business Profile → **Edit profile → Contact → Website**, enter the website address.
+2. Copy your profile's share link into `googleBusiness` in `assets/js/main.js` and run the build command.
+   A "Google Profile" button then appears on the contact and service pages.
+3. Keep the name, address and phone **exactly the same** on the website and the Google profile.
+4. Add the site to **Google Search Console** (search.google.com/search-console), verify it, and submit `sitemap.xml`.

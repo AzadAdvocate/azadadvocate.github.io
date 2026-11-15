@@ -14,7 +14,11 @@ const SITE = {
   hours: "Mon – Sat: 10:00 AM – 5:00 PM",
   hoursNote: "Consultations by prior appointment",
   languages: "Hindi, Punjabi & English",
-  mapQuery: "District Courts Jalandhar Punjab"
+  mapQuery: "District Courts Jalandhar Punjab",
+  // Website address (change when you buy your own domain, e.g. "https://www.yourdomain.in/")
+  siteUrl: "https://mohdrafiqazad-hue.github.io/Rafiqq/",
+  // Paste your Google Business Profile link here (Google Maps → your profile → Share → Copy link)
+  googleBusiness: ""
 };
 
 const NAV = [
@@ -37,7 +41,8 @@ const store = {
 function renderHeader() {
   const host = document.getElementById("site-header");
   if (!host) return;
-  const page = document.body.dataset.page;
+  let page = document.body.dataset.page;
+  if (page === "area") page = "services";
   host.outerHTML = `
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="topbar">
@@ -100,7 +105,7 @@ function renderFooter() {
       <div>
         <h4>Practice Areas</h4>
         <ul>
-          ${cats.map((c) => `<li><a href="services.html#${c.id}">${esc(c.name)}</a></li>`).join("")}
+          ${cats.map((c) => `<li><a href="${c.slug}.html">${esc(c.name)}</a></li>`).join("")}
           <li><a href="services.html">View all A–Z services &rarr;</a></li>
         </ul>
       </div>
@@ -112,6 +117,7 @@ function renderFooter() {
           <li><i class="fa-brands fa-whatsapp"></i><a href="${waLink()}" target="_blank" rel="noopener">Chat on WhatsApp</a></li>
           ${SITE.email ? `<li><i class="fa-solid fa-envelope"></i><a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a></li>` : ""}
           <li><i class="fa-regular fa-clock"></i><span>${esc(SITE.hours)}</span></li>
+          ${SITE.googleBusiness ? `<li><i class="fa-brands fa-google"></i><a href="${esc(SITE.googleBusiness)}" target="_blank" rel="noopener">Find us on Google</a></li>` : ""}
         </ul>
       </div>
     </div>
@@ -225,6 +231,9 @@ function initUI() {
   document.querySelectorAll("[data-wa]").forEach((a) => { a.href = waLink(a.dataset.wa); a.target = "_blank"; a.rel = "noopener"; });
   document.querySelectorAll("[data-tel]").forEach((a) => { a.href = "tel:" + SITE.phoneRaw; });
   document.querySelectorAll("[data-site]").forEach((el) => { const v = SITE[el.dataset.site]; if (v) el.textContent = v; });
+  document.querySelectorAll("[data-gbp]").forEach((a) => {
+    if (SITE.googleBusiness) { a.href = SITE.googleBusiness; a.target = "_blank"; a.rel = "noopener"; a.hidden = false; }
+  });
   document.querySelectorAll("[data-map]").forEach((f) => { f.src = `https://maps.google.com/maps?q=${encodeURIComponent(SITE.mapQuery)}&z=15&output=embed`; });
 }
 
@@ -290,7 +299,7 @@ function renderPracticeGrid() {
   const limit = parseInt(host.dataset.limit || "0", 10);
   const cats = limit ? window.LEGAL_CATEGORIES.slice(0, limit) : window.LEGAL_CATEGORIES;
   host.innerHTML = cats.map((c) => `
-    <a class="card reveal" href="services.html#${c.id}">
+    <a class="card reveal" href="${c.slug}.html">
       <span class="count">${c.services.length} services</span>
       <div class="card-icon"><i class="fa-solid ${c.icon}"></i></div>
       <h3>${esc(c.name)}</h3>
@@ -389,8 +398,8 @@ function initDirectory() {
         const items = list.filter((s) => s.cat.id === c.id);
         if (!items.length) return "";
         return `<section class="cat-block" id="${c.id}">
-          <div class="cat-head"><div class="card-icon"><i class="fa-solid ${c.icon}"></i></div><h2>${esc(c.name)}</h2></div>
-          <p class="cat-summary">${esc(c.summary)}</p>
+          <div class="cat-head"><div class="card-icon"><i class="fa-solid ${c.icon}"></i></div><h2><a href="${c.slug}.html" style="color:inherit">${esc(c.name)}</a></h2></div>
+          <p class="cat-summary">${esc(c.summary)} <a href="${c.slug}.html">Read more &rarr;</a></p>
           <div class="svc-grid">${items.map((s) => svcBtn(s, false)).join("")}</div>
         </section>`;
       }).join("");
