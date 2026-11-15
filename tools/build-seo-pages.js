@@ -44,7 +44,7 @@ function businessLd(extra) {
   const o = {
     "@type": "LegalService",
     "@id": BASE + "#advocate",
-    name: `${SITE.name}, ${SITE.title}`,
+    name: `${SITE.title} ${SITE.name}`,   // same as the Google Business Profile name
     url: BASE,
     telephone: SITE.phoneRaw,
     address: ADDRESS,

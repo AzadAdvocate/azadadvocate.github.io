@@ -18,7 +18,7 @@ const SITE = {
   // Website address (change when you buy your own domain, e.g. "https://www.yourdomain.in/")
   siteUrl: "https://mohdrafiqazad-hue.github.io/Rafiqq/",
   // Paste your Google Business Profile link here (Google Maps → your profile → Share → Copy link)
-  googleBusiness: ""
+  googleBusiness: "https://share.google/HQ6wc0MuZdKfEx9Nq"
 };
 
 const NAV = [
