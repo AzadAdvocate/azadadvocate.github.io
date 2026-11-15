@@ -300,7 +300,12 @@ window.LEGAL_CATEGORIES = [
       ["Document Attestation & Apostille", "Assistance with apostille, embassy attestation and verification."],
       ["NRI Succession & Inheritance", "Succession certificates, mutation and transfer of ancestral property."],
       ["Punjab NRI Commission Complaints", "Complaints before the Punjab State Commission for NRIs."],
-      ["FEMA Advice for NRIs", "Buying, selling and repatriating money from property in India under FEMA rules."]
+      ["FEMA Advice for NRIs", "Buying, selling and repatriating money from property in India under FEMA rules."],
+      ["Sale or Purchase of Property for NRIs", "Title checks, agreements, registration through a Power of Attorney holder, and safe transfer of sale money."],
+      ["NRI Tenant Eviction & Rent Recovery", "Evicting tenants who refuse to leave or pay, and recovering unpaid rent from NRI-owned property."],
+      ["NRI Wills & Estate Planning", "Wills covering property in India and abroad, so heirs avoid disputes later."],
+      ["Court Hearings by Video Conference", "Evidence and hearings by video link where the court allows, so you need not travel."],
+      ["OCI, Passport & Document Help", "Affidavits, attestations and documents needed for OCI, passports and consulates."]
     ]
   },
   {

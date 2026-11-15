@@ -585,11 +585,13 @@ const SEARCH_SYNONYMS = {
   hulfnama: ["affidavit"], halafnama: ["affidavit"], affidavit: ["affidavit"], notice: ["notice"], karza: ["loan", "debt"], udhaar: ["loan", "recovery", "money"], paisa: ["money", "recovery"], paise: ["money", "recovery"], rupaye: ["money", "recovery"],
   gaddi: ["vehicle", "accident"], gaadi: ["vehicle", "accident"], hadsa: ["accident"], durghatna: ["accident"], check: ["cheque"], chek: ["cheque"],
   videsh: ["nri", "abroad", "immigration"], agent: ["agent"], visa: ["visa", "immigration"], passport: ["passport"], fauj: ["armed forces", "ex-servicemen"], fauji: ["armed forces", "ex-servicemen"],
+  nri: ["nri"], abroad: ["nri", "abroad"], foreign: ["nri", "abroad"], bahar: ["nri", "abroad"], canada: ["nri", "canada"], uk: ["nri"], england: ["nri"], usa: ["nri"], america: ["nri"],
+  australia: ["nri", "australia"], dubai: ["nri", "gulf"], gulf: ["nri", "gulf"], italy: ["nri", "europe"], europe: ["nri", "europe"], zealand: ["nri"],
   khet: ["agricultural", "farm", "land"], panchayat: ["panchayat", "shamlat"], shamlat: ["shamlat", "panchayat"], nahar: ["canal"], pension: ["pension"], bujurg: ["senior citizen", "parents"]
 };
 const SEARCH_STOP = new Set(["ka", "ki", "ke", "ko", "kaise", "kese", "kya", "hai", "hain", "mein", "me", "se", "liye", "lie", "karna", "karni", "karne", "karwana", "karwani", "karvana", "chahiye", "ho", "gaya", "gayi", "aur", "the", "a", "an", "of", "for", "in", "to", "my", "mera", "meri", "mere", "near", "jalandhar", "punjab", "case", "help", "how", "what", "is", "do", "i", "need", "want", "kare", "karein", "kab", "kahan", "par", "pe",
   "ne", "le", "de", "diya", "liya", "liye", "mil", "mili", "milti", "milta", "milegi", "milega", "raha", "rahi", "rahe", "nahi", "nhi", "nai", "wala", "wali", "wale",
-  "kar", "kr", "sakta", "sakti", "sakte", "hua", "hui", "hota", "hoti", "hoga", "lena", "dena", "bana", "banana", "banwana", "banwani", "chahta", "chahti", "vakil", "wakil", "lawyer", "advocate"]);
+  "kar", "kr", "sakta", "sakti", "sakte", "hua", "hui", "hota", "hoti", "hoga", "lena", "dena", "bana", "banana", "banwana", "banwani", "chahta", "chahti", "vakil", "wakil", "vakeel", "wakeel", "lawyer", "advocate", "new"]);
 
 function searchSite(query) {
   const index = window.SEARCH_INDEX || [];
@@ -657,6 +659,34 @@ function initGlobalSearch() {
   form.querySelectorAll("[data-q]").forEach((b) => b.addEventListener("click", () => { input.value = b.dataset.q; render(); input.focus(); }));
 }
 
+/* ---------- NRI desk: Jalandhar time vs visitor's time ---------- */
+function initNriClock() {
+  const ist = document.getElementById("clockIST");
+  if (!ist) return;
+  const istDate = document.getElementById("clockISTDate");
+  const local = document.getElementById("clockLocal");
+  const localDate = document.getElementById("clockLocalDate");
+  const localLabel = document.getElementById("clockLocalLabel");
+  const localRow = document.getElementById("clockLocalRow");
+  let zone = "";
+  try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) { /* ignore */ }
+  const inIndia = /Asia\/(Kolkata|Calcutta)/.test(zone);
+  if (inIndia) localRow.hidden = true;
+  else if (zone) localLabel.textContent = "Your time · " + zone.split("/").pop().replace(/_/g, " ");
+  const fmt = (tz, opts) => { try { return new Intl.DateTimeFormat("en-IN", Object.assign({ timeZone: tz }, opts)).format(new Date()); } catch (e) { return ""; } };
+  const tick = () => {
+    ist.textContent = fmt("Asia/Kolkata", { hour: "numeric", minute: "2-digit", hour12: true }).toUpperCase();
+    istDate.textContent = fmt("Asia/Kolkata", { weekday: "long", day: "numeric", month: "short" }) + " · IST";
+    if (!inIndia) {
+      const tz = zone || undefined;
+      local.textContent = new Intl.DateTimeFormat("en-IN", { timeZone: tz, hour: "numeric", minute: "2-digit", hour12: true }).format(new Date()).toUpperCase();
+      localDate.textContent = new Intl.DateTimeFormat("en-IN", { timeZone: tz, weekday: "long", day: "numeric", month: "short" }).format(new Date());
+    }
+  };
+  tick();
+  setInterval(tick, 15000);
+}
+
 /* ---------- Boot ---------- */
 document.addEventListener("DOMContentLoaded", () => {
   renderHeader();
@@ -667,6 +697,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactForm();
   initDraftDesk();
   initGlobalSearch();
+  initNriClock();
   initUI();
   initReveal();
   renderDisclaimer();

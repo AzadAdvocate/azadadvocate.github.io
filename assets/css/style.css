@@ -500,3 +500,55 @@ section[id], [id="book"] { scroll-margin-top: 90px; }
   .search-popular button:nth-of-type(n+7) { display: none; }
   .search-row .btn { padding: 0 16px; }
 }
+
+/* NRI ribbon in hero */
+.nri-ribbon { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; padding: 6px 14px 6px 6px; border-radius: 50px; background: rgba(201,161,74,.12); border: 1px solid rgba(201,161,74,.45); color: #f1e3c0; font-size: .88rem; line-height: 1.35; transition: background .2s; }
+.nri-ribbon:hover { background: rgba(201,161,74,.22); color: #fff; }
+.nri-ribbon-tag { background: var(--gold-500); color: var(--navy-900); font-weight: 700; font-size: .75rem; letter-spacing: .08em; padding: 4px 10px; border-radius: 50px; }
+.nri-ribbon > i { color: var(--gold-400); font-size: .8rem; }
+
+/* NRI desk section */
+.nri-band { position: relative; overflow: hidden; padding: 84px 0; color: #cbd5e6;
+  background: radial-gradient(circle at 12% 20%, rgba(201,161,74,.16), transparent 40%), radial-gradient(circle at 90% 85%, rgba(37,211,102,.08), transparent 40%), linear-gradient(140deg, var(--navy-900), var(--navy-700)); }
+.nri-band::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .07;
+  background-image: radial-gradient(rgba(255,255,255,.9) 1px, transparent 1.4px); background-size: 22px 22px; }
+.nri-band .container { position: relative; }
+.nri-band h2 { color: #fff; font-size: clamp(1.7rem, 3.4vw, 2.6rem); text-wrap: balance; }
+.nri-top { display: grid; grid-template-columns: 1.35fr .9fr; gap: 48px; align-items: center; }
+.nri-intro p { font-size: 1.05rem; max-width: 620px; }
+.nri-countries { list-style: none; padding: 0; margin: 20px 0 28px; display: flex; flex-wrap: wrap; gap: 8px; }
+.nri-countries li { padding: 7px 14px; border-radius: 50px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.16); color: #fff; font-size: .88rem; }
+.nri-countries i { color: var(--gold-400); margin-right: 6px; font-size: .78rem; }
+.nri-clock { background: #fff; color: var(--ink); border-radius: 20px; padding: 28px; box-shadow: var(--shadow-lg); }
+.clock-row { display: flex; flex-direction: column; gap: 2px; padding-bottom: 16px; margin-bottom: 16px; border-bottom: 1px dashed var(--line); }
+.clock-label { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 600; }
+.clock-label i { color: var(--gold-500); margin-right: 4px; }
+.clock-time { font-family: var(--font-head); font-size: 2.3rem; color: var(--navy-800); line-height: 1.15; font-variant-numeric: tabular-nums; }
+.clock-sub { font-size: .88rem; color: var(--muted); }
+.clock-status { display: flex; align-items: center; gap: 10px; font-weight: 700; color: #128c4a; margin: 0 0 8px; }
+.live-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--whatsapp); box-shadow: 0 0 0 0 rgba(37,211,102,.6); animation: livepulse 2s infinite; }
+@keyframes livepulse { 70% { box-shadow: 0 0 0 10px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
+.clock-note { font-size: .86rem; color: var(--muted); margin: 0; }
+.clock-note strong { color: var(--navy-800); white-space: nowrap; }
+.nri-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 56px; }
+.nri-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 24px; transition: border-color .2s, background .2s; }
+.nri-card:hover { border-color: rgba(201,161,74,.6); background: rgba(255,255,255,.08); }
+.nri-card > i { font-size: 1.4rem; color: var(--gold-400); margin-bottom: 12px; }
+.nri-card h3 { color: #fff; font-size: 1.12rem; margin-bottom: 6px; }
+.nri-card p { margin: 0; font-size: .92rem; color: #b9c4d6; }
+.nri-steps { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.nri-steps li { display: flex; gap: 12px; align-items: flex-start; font-size: .88rem; color: #b9c4d6; }
+.nri-steps li > span { flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--gold-500); color: var(--navy-900); font-weight: 700; font-size: .9rem; }
+.nri-steps strong { display: block; color: #fff; font-size: .95rem; }
+@media (max-width: 960px) {
+  .nri-top { grid-template-columns: 1fr; gap: 32px; }
+  .nri-grid { grid-template-columns: repeat(2, 1fr); }
+  .nri-steps { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .nri-band { padding: 60px 0; }
+  .nri-grid, .nri-steps { grid-template-columns: 1fr; }
+  .nri-clock { padding: 22px; }
+  .clock-time { font-size: 2rem; }
+}
+@media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }

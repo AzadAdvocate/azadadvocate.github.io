@@ -165,13 +165,16 @@ module.exports.categories = {
     ]
   },
   nri: {
-    title: "NRI Legal Services Punjab | NRI Property, Power of Attorney, Divorce — Jalandhar",
+    title: "NRI Lawyer in Jalandhar, Punjab | Property, Divorce, Power of Attorney for NRIs in Canada, UK, USA, Australia",
     h1: "NRI Legal Services in Punjab",
-    intro: "For NRIs in Canada, UK, USA, Australia, the Gulf and Europe with matters in Jalandhar and Doaba: property protection, illegal possession, Power of Attorney, succession and mutation, matrimonial disputes and court representation without frequent travel.",
-    searches: ["NRI property lawyer Punjab", "NRI ki zameen par kabza", "power of attorney from Canada for Punjab", "NRI divorce India", "NRI lawyer Jalandhar", "Punjab NRI Commission complaint", "ਐਨਆਰਆਈ ਵਕੀਲ ਜਲੰਧਰ"],
+    intro: "For NRIs in Canada, the UK, the USA, Australia, New Zealand, the Gulf and Europe with matters in Jalandhar and Doaba: property protection and illegal possession, tenant eviction, sale and purchase through Power of Attorney, succession and mutation, divorce and custody, agent fraud and court cases, handled while you stay abroad.",
+    searches: ["NRI lawyer Jalandhar", "NRI lawyer for Punjab property in Canada", "Punjab property lawyer for NRI in UK", "NRI property dispute lawyer USA", "lawyer for NRI in Australia Punjab", "NRI ki zameen par kabza", "kirayedar ghar khali nahi kar raha NRI", "power of attorney from Canada for Punjab", "NRI divorce lawyer Punjab", "Punjab NRI Commission complaint", "ਐਨਆਰਆਈ ਵਕੀਲ ਜਲੰਧਰ", "एनआरआई वकील जालंधर"],
     faqs: [
       ["Kya mujhe har tareekh par India aana padega?", "Zyadatar maamlon mein nahi. Power of Attorney aur affidavits videsh mein banwa kar bheje ja sakte hain, aur vakil aapki taraf se pesh ho sakta hai. Kuch steps mein khud ki maujoodgi zaroori hoti hai, jo pehle bata diya jaata hai."],
-      ["Videsh mein banwai Power of Attorney Punjab mein kaise chalegi?", "Embassy/consulate mein attest ya apostille karwa kar India bhejni hoti hai, aur yahan tay samay ke andar stamp duty adjudication karwani padti hai."]
+      ["Videsh mein banwai Power of Attorney Punjab mein kaise chalegi?", "Embassy/consulate mein attest ya apostille karwa kar India bhejni hoti hai, aur yahan tay samay ke andar stamp duty adjudication karwani padti hai."],
+      ["Mera time zone alag hai, consultation kaise hoga?", "WhatsApp video, phone ya Zoom par aapke desh ke time ke hisaab se call fix hoti hai. Documents email ya WhatsApp par bheje ja sakte hain."],
+      ["Meri property par kirayedar ya rishtedaar ne kabza kar liya hai?", "Possession aur eviction ke liye civil suit, aur zaroorat ho to police complaint ki ja sakti hai. Aapka Power of Attorney holder aapki jagah case chala sakta hai."],
+      ["Kya videsh mein rehte hue divorce ya custody case ho sakta hai?", "Haan. Kai steps Power of Attorney aur video conferencing se ho jaate hain, jahan court anumati de. Mutual consent divorce mein aksar sirf kuch tareekhon par maujoodgi chahiye hoti hai."]
     ]
   },
   documents: {
