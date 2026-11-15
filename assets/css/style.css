@@ -114,15 +114,16 @@ button, input, select, textarea { font: inherit; }
 }
 .brand-text { display: flex; flex-direction: column; line-height: 1.15; min-width: 0; }
 .brand-name { font-family: var(--font-head); font-weight: 700; font-size: 1.18rem; white-space: nowrap; }
-.brand-sub { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-500); font-weight: 600; }
+.brand-sub { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-500); font-weight: 600; white-space: nowrap; }
+.site-header .brand { flex-shrink: 0; }
 .main-nav ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 4px; }
-.main-nav a { display: block; padding: 10px 13px; color: var(--ink); font-weight: 500; font-size: .95rem; border-radius: 8px; }
+.main-nav a { display: block; padding: 10px 9px; color: var(--ink); font-weight: 500; font-size: .94rem; border-radius: 8px; white-space: nowrap; }
 .main-nav a:hover { color: var(--navy-600); background: var(--bg-soft); }
 .main-nav a.active { color: var(--navy-800); font-weight: 700; box-shadow: inset 0 -2px 0 var(--gold-500); border-radius: 0; }
 .nav-cta { margin-left: 8px; }
 .nav-toggle { display: none; background: none; border: 0; font-size: 1.5rem; color: var(--navy-800); cursor: pointer; padding: 8px; }
 
-@media (max-width: 1080px) {
+@media (max-width: 1240px) {
   .nav-toggle { display: block; }
   .main-nav {
     position: fixed; inset: 0 0 0 auto; width: min(320px, 86vw); background: #fff;
@@ -139,7 +140,7 @@ button, input, select, textarea { font: inherit; }
   .nav-overlay { position: fixed; inset: 0; background: rgba(7,21,38,.5); z-index: 850; opacity: 0; pointer-events: none; transition: opacity .3s; }
   .nav-overlay.show { opacity: 1; pointer-events: auto; }
 }
-@media (min-width: 1081px) { .nav-close, .nav-overlay { display: none; } }
+@media (min-width: 1241px) { .nav-close, .nav-overlay { display: none; } }
 @media (max-width: 640px) {
   .topbar-hide-sm { display: none; }
   .brand-name { font-size: 1rem; }
@@ -442,3 +443,20 @@ section[id], [id="book"] { scroll-margin-top: 90px; }
 .area-links a { display: inline-block; padding: 9px 16px; border-radius: 50px; border: 1px solid var(--line); background: #fff; color: var(--navy-800); font-size: .9rem; font-weight: 500; transition: all .2s; }
 .area-links a:hover { border-color: var(--gold-500); background: var(--gold-100); color: var(--navy-800); }
 .page-hero .btn-outline { border-color: rgba(255,255,255,.6); }
+
+/* Drafting Desk */
+.draft-group { padding-top: 36px; scroll-margin-top: 220px; }
+.draft-group .cat-head { margin-bottom: 16px; }
+.draft-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+.draft-item { display: flex; align-items: center; gap: 12px; justify-content: space-between; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; color: var(--ink); transition: all .2s; min-width: 0; }
+.draft-item:hover { border-color: var(--whatsapp); box-shadow: var(--shadow); transform: translateY(-2px); color: var(--ink); }
+.draft-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.draft-text strong { color: var(--navy-800); font-size: .95rem; font-weight: 600; line-height: 1.35; }
+.draft-text span { color: var(--muted); font-size: .8rem; line-height: 1.45; }
+.draft-wa { flex: 0 0 auto; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: #e8f9ef; color: #128c4a; font-size: 1.1rem; transition: all .2s; }
+.draft-item:hover .draft-wa { background: var(--whatsapp); color: #fff; }
+.draft-teaser { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0 28px; }
+.draft-teaser a { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 50px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.18); color: #fff; font-size: .9rem; }
+.draft-teaser a:hover { background: var(--whatsapp); border-color: var(--whatsapp); color: #fff; }
+.draft-teaser i { color: var(--whatsapp); }
+.draft-teaser a:hover i { color: #fff; }

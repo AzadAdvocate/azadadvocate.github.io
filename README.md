@@ -14,6 +14,7 @@ Pure HTML/CSS/JS — no build step, no server needed. Works on any static host.
 | `online-services.html` | Online consultation modes, 16 online services, NRI Legal Desk |
 | `about.html` | Profile, approach, courts & forums |
 | `resources.html` | Helplines, know-your-rights, IPC→BNS / CrPC→BNSS tables, limitation periods, document checklists, official links |
+| `drafting.html` | **Drafting Desk** — 200 documents (agreements, deeds, affidavits, notices, petitions, policies) with search and A–Z filter; every document opens WhatsApp in one click |
 | `contact.html` | Consultation form (sends to WhatsApp), chamber details, Google Map |
 | `disclaimer.html` | Bar Council of India disclaimer, privacy policy, terms |
 
@@ -50,6 +51,7 @@ node tools/build-seo-pages.js
 ```
 
 - Search phrases and FAQs: `tools/seo-data.js`
+- Drafting Desk documents: `tools/drafting-data.js`
 - Website address (`siteUrl`) and Google Business Profile link (`googleBusiness`): `SITE` in `assets/js/main.js`
 
 ### Connecting Google Business Profile & Google Search

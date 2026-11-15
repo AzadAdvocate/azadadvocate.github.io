@@ -26,6 +26,7 @@ const NAV = [
   ["about.html", "About", "about"],
   ["services.html", "Practice Areas", "services"],
   ["online-services.html", "Online Services", "online"],
+  ["drafting.html", "Drafting", "drafting"],
   ["resources.html", "Legal Resources", "resources"],
   ["contact.html", "Contact", "contact"]
 ];
@@ -494,6 +495,76 @@ function initContactForm() {
     el.addEventListener("input", () => { const f = el.closest(".field") || el.closest(".consent"); if (f) f.classList.remove("invalid"); }));
 }
 
+/* ---------- Drafting Desk: search, filters, custom request ---------- */
+function initDraftDesk() {
+  const search = document.getElementById("draftSearch");
+  if (!search) return;
+  const items = Array.from(document.querySelectorAll(".draft-item"));
+  const groups = Array.from(document.querySelectorAll(".draft-group"));
+  const chips = document.getElementById("draftChips");
+  const azHost = document.getElementById("draftAz");
+  const countEl = document.getElementById("draftCount");
+  const empty = document.getElementById("draftEmpty");
+  const state = { q: "", group: "all", letter: "" };
+  azHost.innerHTML = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((l) => `<button data-letter="${l}" aria-label="Documents starting with ${l}">${l}</button>`).join("");
+  const groupOf = (el) => el.closest(".draft-group").dataset.group;
+  const textOf = (el) => (el.textContent + " " + el.closest(".draft-group").querySelector("h2").textContent).toLowerCase();
+
+  function render() {
+    const q = state.q.trim().toLowerCase();
+    let shown = 0;
+    const pool = items.filter((el) => (state.group === "all" || groupOf(el) === state.group) && (!q || textOf(el).includes(q)));
+    items.forEach((el) => {
+      const ok = pool.includes(el) && (!state.letter || el.dataset.name.toUpperCase().startsWith(state.letter));
+      el.hidden = !ok;
+      if (ok) shown++;
+    });
+    groups.forEach((g) => { g.hidden = !g.querySelector(".draft-item:not([hidden])"); });
+    azHost.querySelectorAll("button").forEach((b) => {
+      b.disabled = !pool.some((el) => el.dataset.name.toUpperCase().startsWith(b.dataset.letter));
+      b.classList.toggle("active", b.dataset.letter === state.letter);
+    });
+    countEl.textContent = `Showing ${shown} of ${items.length} documents`;
+    empty.hidden = shown > 0;
+  }
+  let t;
+  search.addEventListener("input", () => { clearTimeout(t); t = setTimeout(() => { state.q = search.value; state.letter = ""; render(); }, 120); });
+  chips.addEventListener("click", (e) => {
+    const c = e.target.closest(".chip"); if (!c) return;
+    chips.querySelectorAll(".chip").forEach((x) => x.classList.toggle("active", x === c));
+    state.group = c.dataset.group; state.letter = ""; render();
+  });
+  azHost.addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b || b.disabled) return;
+    state.letter = state.letter === b.dataset.letter ? "" : b.dataset.letter; render();
+  });
+  const hash = location.hash.replace("#", "");
+  const hashChip = hash && chips.querySelector(`[data-group="${hash}"]`);
+  if (hashChip) hashChip.click();
+  render();
+
+  const form = document.getElementById("draftForm");
+  if (!form) return;
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let ok = true;
+    form.querySelectorAll("[required]").forEach((inp) => {
+      const valid = inp.value.trim() !== "";
+      inp.closest(".field").classList.toggle("invalid", !valid);
+      if (!valid) ok = false;
+    });
+    if (!ok) { form.querySelector(".invalid input").focus(); return; }
+    const v = (id) => form.querySelector(id).value.trim();
+    const text = [`Hello Advocate ${SITE.name}, I want to get a document drafted.`, "", `Document: ${v("#d-doc")}`, `Name: ${v("#d-name")}`, v("#d-details") ? `Details: ${v("#d-details")}` : null].filter((x) => x !== null).join("\n");
+    const url = waLink(text);
+    window.open(url, "_blank", "noopener");
+    const box = document.getElementById("draftSuccess");
+    box.innerHTML = `<i class="fa-solid fa-circle-check"></i> Your request is ready. If WhatsApp did not open, <a href="${url}" target="_blank" rel="noopener"><strong>tap here to open WhatsApp</strong></a> and press send.`;
+    box.style.display = "block";
+  });
+  form.querySelectorAll("input, textarea").forEach((el) => el.addEventListener("input", () => el.closest(".field").classList.remove("invalid")));
+}
+
 /* ---------- Boot ---------- */
 document.addEventListener("DOMContentLoaded", () => {
   renderHeader();
@@ -502,6 +573,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderOnlineGrid();
   initDirectory();
   initContactForm();
+  initDraftDesk();
   initUI();
   initReveal();
   renderDisclaimer();
