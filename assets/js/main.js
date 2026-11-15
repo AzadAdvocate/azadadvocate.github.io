@@ -470,9 +470,15 @@ function initContactForm() {
       "",
       `Matter: ${v("#f-msg")}`
     ].filter((x) => x !== null);
-    window.open(waLink(lines.join("\n")), "_blank", "noopener");
+    const url = waLink(lines.join("\n"));
+    window.open(url, "_blank", "noopener");
     const ok2 = document.getElementById("formSuccess");
-    if (ok2) ok2.style.display = "block";
+    if (ok2) {
+      ok2.innerHTML = `<i class="fa-solid fa-circle-check"></i> Your request is ready. If WhatsApp did not open automatically,
+        <a href="${url}" target="_blank" rel="noopener"><strong>tap here to open WhatsApp</strong></a> and press send.
+        You can also call <strong>${esc(SITE.phoneDisplay)}</strong>.`;
+      ok2.style.display = "block";
+    }
     form.reset();
   });
   form.querySelectorAll("input, select, textarea").forEach((el) =>

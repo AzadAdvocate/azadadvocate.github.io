@@ -416,11 +416,11 @@ tbody tr:nth-child(even) { background: var(--bg-soft); }
 @keyframes pulse { 0% { transform: scale(1); opacity: .8; } 100% { transform: scale(1.5); opacity: 0; } }
 
 /* Reveal on scroll */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.reveal { transform: translateY(18px); transition: transform .7s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal { transform: none; transition: none; }
   .float-wa::after { animation: none; }
 }
 
