@@ -11,8 +11,8 @@ const SITE = {
   phoneRaw: "+917009646869",
   whatsapp: "917009646869",
   email: "",                       // e.g. "contact@yourdomain.com" — leave empty to hide
-  hours: "Mon – Sat: 10:00 AM – 5:00 PM",
-  hoursNote: "Consultations by prior appointment",
+  hours: "Open 24 Hours · All 7 Days",
+  hoursNote: "Call or WhatsApp anytime, day or night",
   languages: "Hindi, Punjabi & English",
   mapQuery: "District Courts Jalandhar Punjab",
   // Website address (change when you buy your own domain, e.g. "https://www.yourdomain.in/")

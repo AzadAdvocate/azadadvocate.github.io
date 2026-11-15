@@ -50,6 +50,12 @@ function businessLd(extra) {
     telephone: SITE.phoneRaw,
     address: ADDRESS,
     areaServed: ["Jalandhar", "Punjab", "India"],
+    openingHoursSpecification: [{
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      opens: "00:00",
+      closes: "23:59"
+    }],
     knowsLanguage: ["hi", "pa", "en"],
     image: BASE + "assets/img/favicon.svg"
   };
