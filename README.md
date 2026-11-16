@@ -31,15 +31,15 @@ A BCI-compliant disclaimer popup appears on the first visit.
 
 ## Live website
 
-**https://mohdrafiqazad-hue.github.io/**
+**https://azadadvocate.github.io/**
 
-This repository is a GitHub Pages *user site*: every push to `main` is published automatically
+This repository is the GitHub Pages site of the **AzadAdvocate** organization: every push to `main` is published automatically
 (Settings → Pages → Deploy from a branch → `main` / `(root)`).
 
 ### Using your own domain later
 1. At your domain provider, add DNS records: four `A` records for `@` →
    `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`,
-   and a `CNAME` record for `www` → `mohdrafiqazad-hue.github.io`.
+   and a `CNAME` record for `www` → `azadadvocate.github.io`.
 2. Settings → Pages → Custom domain → enter the domain → Save → tick **Enforce HTTPS**.
 3. Change `siteUrl` in `assets/js/main.js` to the new domain and run `node tools/build-seo-pages.js`.
 
