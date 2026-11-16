@@ -29,14 +29,19 @@ A BCI-compliant disclaimer popup appears on the first visit.
 - **Add a photo:** save it as `assets/img/advocate.jpg` and follow the comment in `about.html`.
 - **Colours / fonts:** CSS variables at the top of `assets/css/style.css`.
 
-## Publish free on GitHub Pages
+## Live website
 
-1. Merge this branch into `main`.
-2. Repository → **Settings → Pages** → Source: *Deploy from a branch* → `main` / `(root)` → Save.
-3. The site goes live at `https://<username>.github.io/<repo>/` in a minute or two.
-4. Optional: add your own domain under **Settings → Pages → Custom domain**.
+**https://mohdrafiqazad-hue.github.io/**
 
-Works the same on Netlify, Vercel, Cloudflare Pages or any shared hosting (upload all files).
+This repository is a GitHub Pages *user site*: every push to `main` is published automatically
+(Settings → Pages → Deploy from a branch → `main` / `(root)`).
+
+### Using your own domain later
+1. At your domain provider, add DNS records: four `A` records for `@` →
+   `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`,
+   and a `CNAME` record for `www` → `mohdrafiqazad-hue.github.io`.
+2. Settings → Pages → Custom domain → enter the domain → Save → tick **Enforce HTTPS**.
+3. Change `siteUrl` in `assets/js/main.js` to the new domain and run `node tools/build-seo-pages.js`.
 
 ## Google search (SEO)
 
