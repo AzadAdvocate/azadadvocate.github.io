@@ -43,6 +43,25 @@ This repository is the GitHub Pages site of the **AzadAdvocate** organization: e
 2. Settings → Pages → Custom domain → enter the domain → Save → tick **Enforce HTTPS**.
 3. Change `siteUrl` in `assets/js/main.js` to the new domain and run `node tools/build-seo-pages.js`.
 
+## Visitor statistics (Google Analytics)
+
+Put your Google Analytics 4 Measurement ID (looks like `G-AB12CD34EF`) in `analyticsId` in `SITE`
+at the top of `assets/js/main.js`. Leave it empty to switch tracking off.
+
+Besides page views, the site sends these events (never names, phone numbers or form text):
+
+| Event | Details |
+|---|---|
+| `whatsapp_click` | `service`, `category`, `document`, `link_location` |
+| `call_click` | `link_location` |
+| `drafting_request` | `document`, `doc_group`, `source` |
+| `view_service` | `service`, `category` |
+| `search` | `search_term`, `search_location` |
+| `generate_lead` | `area_of_law`, `consult_mode` |
+
+To see these details in reports, add them in Google Analytics under
+**Admin → Custom definitions → Create custom dimension** (scope: Event).
+
 ## Google search (SEO)
 
 The site has a separate, search-friendly page for every practice area (`criminal-lawyer-jalandhar.html`,

@@ -18,7 +18,9 @@ const SITE = {
   // Website address (change when you buy your own domain, e.g. "https://www.yourdomain.in/")
   siteUrl: "https://azadadvocate.github.io/",
   // Paste your Google Business Profile link here (Google Maps → your profile → Share → Copy link)
-  googleBusiness: "https://share.google/HQ6wc0MuZdKfEx9Nq"
+  googleBusiness: "https://share.google/HQ6wc0MuZdKfEx9Nq",
+  // Google Analytics 4 Measurement ID (looks like "G-AB12CD34EF"). Leave empty to switch visitor tracking off.
+  analyticsId: ""
 };
 
 const NAV = [
@@ -37,6 +39,91 @@ const store = {
   get(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } },
   set(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* ignore */ } }
 };
+
+/* ---------- Visitor analytics (Google Analytics 4) ----------
+ * Tracks page views plus these events (no names, phone numbers or form text are ever sent):
+ *   whatsapp_click   {service, category, link_location}   any WhatsApp button
+ *   call_click       {link_location}                      any phone-call button
+ *   drafting_request {document, doc_group, source}         Drafting Desk / custom document request
+ *   view_service     {service, category}                  service details opened on Practice Areas
+ *   search           {search_term, search_location}       site search boxes and popular buttons
+ *   generate_lead    {area_of_law, consult_mode}          consultation form sent to WhatsApp
+ */
+function track(name, params) {
+  if (!SITE.analyticsId || typeof window.gtag !== "function") return;
+  try { window.gtag("event", name, Object.assign({ page_type: document.body.dataset.page || "" }, params || {})); } catch (e) { /* ignore */ }
+}
+
+function waDetails(href) {
+  let text = "";
+  try { text = new URL(href).searchParams.get("text") || ""; } catch (e) { return {}; }
+  let m = text.match(/drafted:\s*(.+)\s\(([^()]+)\)\.\s*Please/);
+  if (m) return { document: m[1].trim(), doc_group: m[2].trim() };
+  m = text.match(/drafted:\s*([^.]+)\./);
+  if (m) return { document: m[1].trim() };
+  m = text.match(/(?:regarding|interested in):?\s*(.+?)(?:\s\(([^()]+)\))?\.\s*$/);
+  if (m && m[1].trim()) return { service: m[1].trim(), category: (m[2] || "").trim() };
+  if (/\bNRI\b/.test(text)) return { service: "NRI enquiry" };
+  return {};
+}
+
+function linkLocation(el) {
+  if (el.closest(".float-actions")) return "floating_button";
+  if (el.closest(".topbar")) return "top_bar";
+  if (el.closest("footer")) return "footer";
+  if (el.closest(".modal")) return "service_popup";
+  if (el.closest("#siteResults")) return "home_search_results";
+  const sec = el.closest("section");
+  if (sec) return sec.id || (sec.className || "").split(" ")[0] || "section";
+  return "page";
+}
+
+function initAnalytics() {
+  const id = (SITE.analyticsId || "").trim();
+  if (!/^G-[A-Z0-9]+$/i.test(id)) return;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  window.gtag("js", new Date());
+  window.gtag("config", id);
+  const s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+  document.head.appendChild(s);
+
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a[href]");
+    if (!a) return;
+    const href = a.getAttribute("href") || "";
+    if (/^https:\/\/wa\.me\//.test(href)) {
+      const info = waDetails(href);
+      const item = a.closest(".draft-item");
+      if (item) {
+        info.document = item.dataset.name;
+        const g = item.closest(".draft-group");
+        info.doc_group = g ? g.querySelector("h2").textContent.trim() : info.doc_group;
+      }
+      track("whatsapp_click", Object.assign({ link_location: linkLocation(a) }, info));
+      if (info.document) track("drafting_request", { document: info.document, doc_group: info.doc_group || "", source: linkLocation(a) });
+    } else if (href.startsWith("tel:")) {
+      track("call_click", { link_location: linkLocation(a) });
+    }
+  });
+
+  const timers = {}, sent = {};
+  [["siteSearch", "home"], ["svcSearch", "practice_areas"], ["draftSearch", "drafting_desk"]].forEach(([elId, where]) => {
+    const input = document.getElementById(elId);
+    if (!input) return;
+    input.addEventListener("input", () => {
+      clearTimeout(timers[where]);
+      timers[where] = setTimeout(() => {
+        const q = input.value.trim().toLowerCase();
+        if (q.length >= 3 && q !== sent[where]) { sent[where] = q; track("search", { search_term: q, search_location: where }); }
+      }, 1500);
+    });
+  });
+  document.querySelectorAll("[data-q]").forEach((b) =>
+    b.addEventListener("click", () => track("search", { search_term: b.dataset.q.toLowerCase(), search_location: "home_popular" })));
+}
 
 /* ---------- Header ---------- */
 function renderHeader() {
@@ -251,6 +338,7 @@ function initReveal() {
 let modalEl = null;
 let lastFocus = null;
 function openServiceModal(catName, name, desc) {
+  track("view_service", { service: name, category: catName });
   if (!modalEl) {
     modalEl = document.createElement("div");
     modalEl.className = "modal";
@@ -483,6 +571,7 @@ function initContactForm() {
       `Matter: ${v("#f-msg")}`
     ].filter((x) => x !== null);
     const url = waLink(lines.join("\n"));
+    track("generate_lead", { area_of_law: v("#f-area"), consult_mode: v("#f-mode") });
     window.open(url, "_blank", "noopener");
     const ok2 = document.getElementById("formSuccess");
     if (ok2) {
@@ -561,6 +650,7 @@ function initDraftDesk() {
     const v = (id) => form.querySelector(id).value.trim();
     const text = [`Hello Advocate ${SITE.name}, I want to get a document drafted.`, "", `Document: ${v("#d-doc")}`, `Name: ${v("#d-name")}`, v("#d-details") ? `Details: ${v("#d-details")}` : null].filter((x) => x !== null).join("\n");
     const url = waLink(text);
+    track("drafting_request", { document: v("#d-doc"), doc_group: "Custom request", source: "custom_form" });
     window.open(url, "_blank", "noopener");
     const box = document.getElementById("draftSuccess");
     box.innerHTML = `<i class="fa-solid fa-circle-check"></i> Your request is ready. If WhatsApp did not open, <a href="${url}" target="_blank" rel="noopener"><strong>tap here to open WhatsApp</strong></a> and press send.`;
@@ -689,6 +779,7 @@ function initNriClock() {
 
 /* ---------- Boot ---------- */
 document.addEventListener("DOMContentLoaded", () => {
+  initAnalytics();
   renderHeader();
   renderFooter();
   renderPracticeGrid();
