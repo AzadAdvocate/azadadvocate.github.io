@@ -20,7 +20,7 @@ const SITE = {
   // Paste your Google Business Profile link here (Google Maps → your profile → Share → Copy link)
   googleBusiness: "https://share.google/HQ6wc0MuZdKfEx9Nq",
   // Google Analytics 4 Measurement ID (looks like "G-AB12CD34EF"). Leave empty to switch visitor tracking off.
-  analyticsId: "G-ZEFYSCSJ12"
+  analyticsId: "G-VKPQJFJB7Z"
 };
 
 const NAV = [
